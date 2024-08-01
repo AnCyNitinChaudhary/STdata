@@ -5,12 +5,12 @@ const path = require('path');
 const xlsx = require('xlsx');
 const mongoose = require('mongoose');
 const { Employee } = require('./models');
-
+require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/employeeDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
